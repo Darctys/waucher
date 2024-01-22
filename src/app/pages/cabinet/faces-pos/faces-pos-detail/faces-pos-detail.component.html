@@ -1,0 +1,14 @@
+<button nz-button [nzType]="'primary'" (click)="createEditFaceModal()"><span>Изменить данные лица POS</span></button>
+<nz-descriptions nzTitle="Информация о лице POS" [ngSwitch]="face.institute">
+  <!--<nz-descriptions-item nzTitle="Фото">{{face.photo}}</nz-descriptions-item>-->
+  <nz-descriptions-item nzTitle="Имя">{{face.fullName}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Rtf">ИРИТ-РТФ</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Inmit">ИНМТ</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Ifo">ИНФО</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="День рождения">{{face.birthday}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="О себе">{{face.description}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Почта">{{face.email}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Телефон">+{{face.phone}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Вконтакте">{{face.vkLink}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Telegram">{{face.tgLink}}</nz-descriptions-item>
+</nz-descriptions>

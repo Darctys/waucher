@@ -1,0 +1,53 @@
+<button nz-button [nzType]="'primary'" (click)="addNewModer()"><span>Добавить нового пользователя</span></button>
+<nz-input-group [nzSuffix]="suffixIconSearch">
+  <input type="text" nz-input placeholder="Поиск" [(ngModel)]="searchValue"/>
+</nz-input-group>
+<div *ngIf="moderList$ | async as moderList">
+  <nz-table #basicTable [nzData]="moderList | userPipe: searchValue"
+            [nzLoading]="loading"
+            [nzPageSize]="10"
+  >
+    <thead>
+    <tr>
+      <th>ФИО</th>
+      <th *ngIf="!isRoot()">Институт</th>
+      <th *ngIf="isRoot()" [nzFilters]="filterList" [nzFilterFn]="instituteFilterFn">Институт</th>
+      <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <ng-container [ngSwitch]="data.institute">
+        <td>{{ data.fullName }}</td>
+        <td *ngSwitchCase="instituteEnum.Vyc">ВУС</td>
+        <td *ngSwitchCase="instituteEnum.Ienim">ИЕНиМ</td>
+        <td *ngSwitchCase="instituteEnum.Inmit">ИНМТ</td>
+        <td *ngSwitchCase="instituteEnum.Rtf">ИРИТ-РТФ</td>
+        <td *ngSwitchCase="instituteEnum.Isa">ИСА</td>
+        <td *ngSwitchCase="instituteEnum.Itoo">ИТОО</td>
+        <td *ngSwitchCase="instituteEnum.Ifk">ИФКСиМП</td>
+        <td *ngSwitchCase="instituteEnum.Ifo">ИнФО</td>
+        <td *ngSwitchCase="instituteEnum.Iey">ИНЭУ</td>
+        <td *ngSwitchCase="instituteEnum.Ygi">УГИ</td>
+        <td *ngSwitchCase="instituteEnum.Yei">УралЭНИН</td>
+        <td *ngSwitchCase="instituteEnum.Fti">ФТИ</td>
+        <td *ngSwitchCase="instituteEnum.Hti">ХТИ</td>
+        <td *ngSwitchDefault>{{data.institute}}</td>
+        <td>
+          <button nz-button nzType="default" (click)="navigateToModerDetail(data.id)"><span>Подробнее</span></button>
+          <ng-container *ngIf="checkRole(data.roles[0])">
+            <button nz-button [nzType]="'primary'" (click)="editModer(data.id)"><span>Изменить данные пользователя</span></button>
+            <button nz-button nzType="default" nzDanger (click)="deleteUser(data.id)"><span>Удалить</span></button>
+          </ng-container>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+
+
+<ng-template #suffixIconSearch>
+  <i nz-icon nzType="search"></i>
+</ng-template>

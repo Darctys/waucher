@@ -1,0 +1,25 @@
+<button nz-button [nzType]="'primary'" (click)="createAddOfferModal()"><span>Добавить предложение</span></button>
+<nz-input-group [nzSuffix]="suffixIconSearch">
+  <input type="text" nz-input placeholder="Поиск" [(ngModel)]="searchValue"/>
+</nz-input-group>
+
+<nz-content class="offerList" *ngFor="let offer of offersService.offerList | search: searchValue">
+  <nz-card nzTitle="{{offer.title}}">
+    <div>
+      {{offer.companyName}}
+    </div>
+    <div>
+      {{offer.activity}}
+    </div>
+    <div>
+      {{offer.deliveryWay}}
+    </div>
+    {{offer.description}}
+  </nz-card>
+  <button nz-button nzType="default" nzDanger (click)="deleteOffer(offer.id)"><span>Удалить</span></button>
+  <button nz-button nzType="default" (click)="editOffer(offer.id)"><span>Изменить</span></button>
+</nz-content>
+
+<ng-template #suffixIconSearch>
+  <i nz-icon nzType="search"></i>
+</ng-template>

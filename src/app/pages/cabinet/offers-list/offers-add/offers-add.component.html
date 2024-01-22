@@ -1,0 +1,41 @@
+<div>
+  <form nz-form [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Название акции</nz-form-label>
+      <nz-form-control nzErrorTip="Введите название предложения">
+        <input nz-input formControlName="title">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Название организации</nz-form-label>
+      <nz-form-control nzErrorTip="Введите название организации">
+        <input nz-input formControlName="companyName">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Активность</nz-form-label>
+      <nz-form-control nzErrorTip="Введите активность">
+        <input nz-input formControlName="activity">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Способ получения</nz-form-label>
+      <nz-form-control nzErrorTip="Введите способо получения">
+        <input nz-input formControlName="deliveryWay">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Описание</nz-form-label>
+      <nz-form-control nzErrorTip="Введите описание предложения">
+        <textarea nz-input formControlName="description"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="cancel()">Отменить</button>
+  <button nz-button nzType="primary" (click)="confirm()">Добавить</button>
+</div>

@@ -1,0 +1,70 @@
+<div>
+  <form nz-form [formGroup]="validateForm">
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="fullName">ФИО</nz-form-label>
+      <nz-form-control nzErrorTip="Введите ФИО пользователя">
+        <input nz-input formControlName="fullName">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="institute">Институт</nz-form-label>
+      <nz-form-control nzErrorTip="Укажите институт пользователя">
+        <nz-select nz-nzAllowClear nzPlaceHolder="Выберите институт" formControlName="institute">
+          <nz-option nzValue="Vyc" nzLabel="ВУС"></nz-option>
+          <nz-option nzValue="Ienim" nzLabel="ИЕНиМ"></nz-option>
+          <nz-option nzValue="Inmit" nzLabel="ИНМТ"></nz-option>
+          <nz-option nzValue="Rtf" nzLabel="ИРИТ-РТФ"></nz-option>
+          <nz-option nzValue="Isa" nzLabel="ИСА"></nz-option>
+          <nz-option nzValue="Itoo" nzLabel="ИТОО"></nz-option>
+          <nz-option nzValue="Ifk" nzLabel="ИФКСиМП"></nz-option>
+          <nz-option nzValue="Ifo" nzLabel="ИнФО"></nz-option>
+          <nz-option nzValue="Iey" nzLabel="ИНЭУ"></nz-option>
+          <nz-option nzValue="Ygi" nzLabel="УГИ"></nz-option>
+          <nz-option nzValue="Yei" nzLabel="УралЭНИН"></nz-option>
+          <nz-option nzValue="Fti" nzLabel="ФТИ"></nz-option>
+          <nz-option nzValue="Hti" nzLabel="ХТИ"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="login">Логин</nz-form-label>
+      <nz-form-control nzErrorTip="Введите логин пользователя">
+        <input nz-input formControlName="login">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="password">Пароль</nz-form-label>
+      <nz-form-control nzErrorTip="Введите пароль пользователя">
+        <input nz-input formControlName="password">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="roles">Роль</nz-form-label>
+      <nz-form-control nzErrorTip="Введите пароль пользователя">
+        <nz-select nz-nzAllowClear nzPlaceHolder="Выберите роль для пользователя" formControlName="roles">
+          <nz-option nzValue="Admin" nzLabel="Администратор"></nz-option>
+          <nz-option nzValue="Moderator" nzLabel="Модератор"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div *ngIf="validateForm.controls['roles'].value === roleEnum.moderator">
+      <div>Возможности пользователя</div>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-checkbox-group [ngModel]="checkOptionsOne" formControlName="permission" class="create_user__permission" ></nz-checkbox-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+  </form>
+</div>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="cancel()">Отменить</button>
+  <button nz-button nzType="primary" (click)="confirm()">Добавить</button>
+</div>

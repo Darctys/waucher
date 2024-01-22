@@ -1,0 +1,81 @@
+<div>
+  <form nz-form [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">ФИО</nz-form-label>
+      <nz-form-control nzErrorTip="Введите имя лица POS">
+        <input nz-input formControlName="fullName">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Институт</nz-form-label>
+      <nz-form-control nzErrorTip="Выберите институт лица POS">
+        <nz-select nzAllowClear nzPlaceHolder="Выберите институт" formControlName="institute">
+          <nz-option nzValue="Rtf" nzLabel="ИРИТ-РТФ"></nz-option>
+          <nz-option nzValue="Info" nzLabel="ИНФО"></nz-option>
+          <nz-option nzValue="Inmt" nzLabel="ИНМТ"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="data">День рождения</nz-form-label>
+      <nz-form-control nzErrorTip="Введите дату рождения">
+        <input nz-input type="date" formControlName="birthday">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="photo">Фото</nz-form-label>
+      <nz-form-control nzErrorTip="Прикрепите фотографию">
+        <nz-upload [nzBeforeUpload]="beforeUpload" [(nzFileList)]="image" nzListType="picture" [nzLimit]="1" [nzFileType]="'image/png,image/jpeg'">
+          <button nz-button>
+            <i nz-icon nzType="upload"></i>
+            Выберите фотографию
+          </button>
+        </nz-upload>
+<!--        <input type="file" (change)="OnFileSelected($event)" formControlName="photo">-->
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="description">О себе</nz-form-label>
+      <nz-form-control nzErrorTip="Напишите пару слов о себе">
+        <input nz-input formControlName="description">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="vkLink">http://vk.com/</nz-form-label>
+      <nz-form-control nzErrorTip="Прикрепите ссылку вк">
+        <input nz-input formControlName="vkLink">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="tgLink">Telegram</nz-form-label>
+      <nz-form-control nzErrorTip="Прикрепите ссылку тг">
+        <input nz-input formControlName="tgLink" placeholder="@nickname">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Почта</nz-form-label>
+      <nz-form-control nzErrorTip="Введите почту лица POS">
+        <input nz-input formControlName="email">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="phone">Номер телефона</nz-form-label>
+      <nz-form-control nzErrorTip="Введите номер телефона лица POS">
+        <input [imask]="phoneMask" nz-input formControlName="phone">
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="cancel()">Отменить</button>
+  <button nz-button nzType="primary" (click)="confirm()">Добавить</button>
+</div>

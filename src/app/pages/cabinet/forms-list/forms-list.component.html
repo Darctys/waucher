@@ -1,0 +1,19 @@
+<button nz-button [nzType]="'primary'" (click)="addForm()"><span>Добавить форму</span></button>
+<nz-table #basicTable [nzData]="formsService.formsList">
+  <thead>
+  <tr>
+    <th>Название формы</th>
+    <th>Действие</th>
+    <th>Дейсвтие</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <ng-container>
+      <td>{{ data.name }}</td>
+      <td><a (click)="editForm(data.id)" >Изменить</a></td>
+      <td><a (click)="deleteForm(data.id)">Удалить</a></td>
+    </ng-container>
+  </tr>
+  </tbody>
+</nz-table>

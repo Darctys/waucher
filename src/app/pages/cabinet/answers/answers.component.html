@@ -1,0 +1,25 @@
+<nz-input-group [nzSuffix]="suffixIconSearch">
+  <input type="text" nz-input placeholder="Поиск" />
+</nz-input-group>
+<nz-table #basicTable [nzData]="answersService.answersList">
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Студент</th>
+    <th>Дата</th>
+    <th>Статус</th>
+    <th>Действие</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <ng-container>
+
+
+    </ng-container>
+  </tr>
+  </tbody>
+</nz-table>
+<ng-template #suffixIconSearch>
+  <i nz-icon nzType="search"></i>
+</ng-template>

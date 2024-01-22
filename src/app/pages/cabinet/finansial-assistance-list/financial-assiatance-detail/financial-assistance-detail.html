@@ -1,0 +1,33 @@
+<div>
+<!--  <nz-upload [nzFileList]="fileList">-->
+
+<!--  </nz-upload>-->
+  <nz-descriptions nzTitle="Информация о заявлении на материальную помощь" [ngSwitch]="financialAssistance?.institute" >
+    <nz-descriptions-item nzTitle="Имя студента">{{studentFullName}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Причина подачи">{{financialAssistance.reason}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Vyc">ВУС</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Ienim">ИЕНиМ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Inmit">ИНМТ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Rtf">ИРИТ-РТФ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Isa">ИСА</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Itoo">ИТОО</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Ifk">ИФКСиМП</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Ifo">ИнФО</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Iey">ИНЭУ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Ygi">УГИ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Yei">УралЭНИН</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Fti">ФТИ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Hti">ХТИ</nz-descriptions-item>
+  </nz-descriptions>
+  <nz-descriptions [ngSwitch]="financialAssistance?.purpose">
+    <nz-descriptions-item nzTitle="Место подачи" *ngSwitchCase="'Institute'">Институт</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Место подачи" *ngSwitchCase="'University'">Университет</nz-descriptions-item>
+  </nz-descriptions>
+  <nz-descriptions [ngSwitch]="financialAssistance?.stage">
+    <nz-descriptions-item nzTitle="Статус заявления" *ngSwitchCase="stageEnum.new">Новое</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Статус заявления" *ngSwitchCase="stageEnum.approved">Согласовано</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Статус заявления" *ngSwitchCase="stageEnum.paid">Выплачено</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Статус заявления" *ngSwitchCase="stageEnum.checked">Просмотрено</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Статус заявления" *ngSwitchCase="stageEnum.canceled">Отклонено</nz-descriptions-item>
+  </nz-descriptions>
+</div>

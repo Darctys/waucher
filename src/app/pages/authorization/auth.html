@@ -1,0 +1,19 @@
+<form nz-form [formGroup]="validateForm" class="auth">
+  <div class="auth__container">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Введите логин">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="userName" placeholder="Логин" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Введите пароль">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Пароль" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button (click)="submitForm()" class="login-form-button login-form-margin" [nzType]="'primary'">Войти</button>
+  </div>
+</form>

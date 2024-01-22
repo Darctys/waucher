@@ -1,0 +1,72 @@
+<h2 nz-typography>Список заявлений на материальную помощь</h2>
+
+<nz-input-group [nzSuffix]="suffixIconSearch">
+  <input type="text" nz-input (ngModelChange)="onSearch($event)" placeholder="Поиск" [(ngModel)]="searchValue" />
+</nz-input-group>
+<div *ngIf="financialAssistanceList$ | async as financialAssistance">
+  <nz-table #basicTable
+            [nzFrontPagination]="false"
+            [nzData]="financialAssistance"
+            [nzLoading] ="loading"
+            [nzTotal]="listLength"
+            [nzPageIndex]="pageIndex"
+            (nzPageIndexChange)="onIndexChange($event)"
+            [nzPageSize]="pageSize"
+  >
+    <thead>
+    <tr>
+      <th [nzFilters]="purposeFilter" [nzFilterMultiple]="false" (nzFilterChange)="onPurposeFilterChange($event)">Место подачи</th>
+      <th *ngIf="!isRoot()" >Институт</th>
+      <th *ngIf="isRoot()" [nzFilters]="instituteFilter" (nzFilterChange)="onInstituteFilterChange($event)">Институт</th>
+      <th>Причина</th>
+      <th [nzFilters]="stageFinancialAssistanceFilter" (nzFilterChange)="onStageFinancialAssistanceFilterChange($event)">Статус</th>
+      <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <ng-container [ngSwitch]="data.purpose">
+        <td *ngSwitchCase="'Institute'">Институт</td>
+        <td *ngSwitchCase="'University'">Университет</td>
+      </ng-container>
+
+      <ng-container [ngSwitch]="data.institute">
+        <td *ngSwitchCase="instituteEnum.Vyc">ВУС</td>
+        <td *ngSwitchCase="instituteEnum.Ienim">ИЕНиМ</td>
+        <td *ngSwitchCase="instituteEnum.Inmit">ИНМТ</td>
+        <td *ngSwitchCase="instituteEnum.Rtf">ИРИТ-РТФ</td>
+        <td *ngSwitchCase="instituteEnum.Isa">ИСА</td>
+        <td *ngSwitchCase="instituteEnum.Itoo">ИТОО</td>
+        <td *ngSwitchCase="instituteEnum.Ifk">ИФКСиМП</td>
+        <td *ngSwitchCase="instituteEnum.Ifo">ИнФО</td>
+        <td *ngSwitchCase="instituteEnum.Iey">ИНЭУ</td>
+        <td *ngSwitchCase="instituteEnum.Ygi">УГИ</td>
+        <td *ngSwitchCase="instituteEnum.Yei">УралЭНИН</td>
+        <td *ngSwitchCase="instituteEnum.Fti">ФТИ</td>
+        <td *ngSwitchCase="instituteEnum.Hti">ХТИ</td>
+        <td *ngSwitchDefault>{{data.institute}}</td>
+      </ng-container>
+
+      <td>{{data.reason}}</td>
+
+      <ng-container [ngSwitch]="data.stage">
+        <td *ngSwitchCase="stageEnum.new">Новое</td>
+        <td *ngSwitchCase="stageEnum.checked">Просмотрено</td>
+        <td *ngSwitchCase="stageEnum.approved">Одобрено</td>
+        <td *ngSwitchCase="stageEnum.paid">Оплачено</td>
+        <td *ngSwitchCase="stageEnum.canceled">Отклонено</td>
+      </ng-container>
+      <td>
+        <button nz-button nzType="default" (click)="navigateToFinancialAssistanceDetail(data?.id)"><span>Подробнее</span></button>
+<!--        <button nz-button [nzType]="'primary'" (click)="crea(data?.id)"><span>Изменить данные студента</span></button>-->
+        <ng-container *ngIf="isHavePermission(permissionEnum.assistancesDelete)">
+          <button nz-button nzType="default" nzDanger (click)="deleteFinancialAssistance(data?.id)"><span>Удалить</span></button>
+        </ng-container>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+<ng-template #suffixIconSearch>
+  <i nz-icon nzType="search"></i>
+</ng-template>

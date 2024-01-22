@@ -1,0 +1,89 @@
+<div>
+  <h2 nz-typography>Заполнить заявление на материальную помощь</h2>
+  <form nz-form [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="fio">ФИО</nz-form-label>
+      <nz-form-control nzErrorTip="Введите ФИО студента">
+        <nz-select formControlName="fio"
+          nzPlaceHolder="Введите ФИО студента"
+          nzAllowClear
+          nzShowSearch
+          nzServerSearch
+          (ngModelChange)="selectedStudent"
+          (nzOnSearch)="onStudentSearch($event)"
+
+        >
+          <ng-container *ngFor="let i of optionList">
+            <nz-option *ngIf="!isLoading" [nzValue]="i.id" [nzLabel]="i.fullName"></nz-option>
+          </ng-container>
+          <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+            <span nz-icon nzType="loading" class="loading-icon"></span>
+            Загрузка...
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="institute">Институт</nz-form-label>
+      <nz-form-control nzErrorTip="Введите институт студента">
+        <nz-select formControlName="institute" nzPlaceHolder="Введите институт студента">
+          <nz-option *ngFor="let institute of instituteList"
+                     [nzValue]="institute.value"
+                     [nzLabel]="institute.text">
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="sourceFunding">Источник финансирования</nz-form-label>
+      <nz-form-control nzErrorTip="Выберите источник финансирования студента">
+        <nz-select formControlName="sourceFunding" nzPlaceHolder="Выберите источник финансирования студента">
+          <nz-option *ngFor="let type of educateTypeList"
+                     [nzValue]="type.value"
+                     [nzLabel]="type.text">
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="submissionPlace">Место подачи</nz-form-label>
+      <nz-form-control nzErrorTip="Выберите место куда подаётся заявление">
+        <nz-select formControlName="submissionPlace" nzPlaceHolder="Выберите место куда подаётся заявление">
+          <nz-option *ngFor="let type of submissionPlaceList"
+                     [nzValue]="type.value"
+                     [nzLabel]="type.text">
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="submissionReason">Причина подачи</nz-form-label>
+      <nz-form-control nzErrorTip="Выберите причину подачи" >
+        <nz-select formControlName="submissionReason" nzMode="tags" nzPlaceHolder="Выберите причину подачи">
+          <nz-option *ngFor="let type of reasonsList$ | async"
+                     [nzValue]="type.value"
+                     [nzLabel]="type.value">
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="documents">Документы</nz-form-label>
+      <nz-form-control nzErrorTip="Прикрепите подтверждающие документы">
+        <nz-upload nzType="drag" [(nzFileList)]="documentList" [nzBeforeUpload]="beforeUpload">
+          <p class="ant-upload-drag-icon">
+            <span nz-icon nzType="inbox"></span>
+          </p>
+          <p class="ant-upload-text">Кликните или перетащите файл в эту область для загрузки</p>
+        </nz-upload>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <button nz-button nzType="primary" (click)="sendApplication()">Отправить заявление</button>
+</div>

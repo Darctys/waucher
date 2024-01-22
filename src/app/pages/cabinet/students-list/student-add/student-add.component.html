@@ -1,0 +1,114 @@
+<div>
+  <form nz-form [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">ФИО</nz-form-label>
+      <nz-form-control nzErrorTip="Введите имя студента">
+        <input nz-input formControlName="fullName">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Институт</nz-form-label>
+      <nz-form-control nzErrorTip="Выберите институт студента">
+        <nz-select nzAllowClear nzPlaceHolder="Выберите институт" formControlName="institute">
+          <nz-option nzValue="Vyc" nzLabel="ВУС"></nz-option>
+          <nz-option nzValue="Ienim" nzLabel="ИЕНиМ"></nz-option>
+          <nz-option nzValue="Inmit" nzLabel="ИНМТ"></nz-option>
+          <nz-option nzValue="Rtf" nzLabel="ИРИТ-РТФ"></nz-option>
+          <nz-option nzValue="Isa" nzLabel="ИСА"></nz-option>
+          <nz-option nzValue="Itoo" nzLabel="ИТОО"></nz-option>
+          <nz-option nzValue="Ifk" nzLabel="ИФКСиМП"></nz-option>
+          <nz-option nzValue="Ifo" nzLabel="ИнФО"></nz-option>
+          <nz-option nzValue="Iey" nzLabel="ИНЭУ"></nz-option>
+          <nz-option nzValue="Ygi" nzLabel="УГИ"></nz-option>
+          <nz-option nzValue="Yei" nzLabel="УралЭНИН"></nz-option>
+          <nz-option nzValue="Fti" nzLabel="ФТИ"></nz-option>
+          <nz-option nzValue="Hti" nzLabel="ХТИ"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Контракт</nz-form-label>
+      <nz-form-control>
+        <nz-select nzAllowClear nzPlaceHolder="Выберете источник финансирования" formControlName="isContract">
+          <nz-option nzValue="true" nzLabel="Да"></nz-option>
+          <nz-option nzValue="false" nzLabel="Нет"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Академическая группа</nz-form-label>
+      <nz-form-control nzErrorTip="Введите академическую группу студента">
+        <input nz-input formControlName="academicGroup">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Номер студенческого билета</nz-form-label>
+      <nz-form-control nzErrorTip="Введите номер студенческого билета">
+        <input nz-input formControlName="posIdCard">
+      </nz-form-control>
+    </nz-form-item>
+
+<!--    <nz-form-item>-->
+<!--      <nz-form-label nzRequired nzFor="email">Номер студенческого билета</nz-form-label>-->
+<!--      <nz-form-control nzErrorTip="Продлён ли данных профсоююзный билет">-->
+<!--        <nz-select nzAllowClear nzPlaceHolder="продлён ли профсоюзный билет" formControlName="isPosCardActive">-->
+<!--          <nz-option nzValue="true" nzLabel="Да"></nz-option>-->
+<!--          <nz-option nzValue="false" nzLabel="Нет"></nz-option>-->
+<!--        </nz-select>-->
+<!--      </nz-form-control>-->
+<!--    </nz-form-item>-->
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Номер карты студента</nz-form-label>
+      <nz-form-control nzErrorTip="Введите номер карты студента">
+        <input nz-input formControlName="studentIdCard">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Есть электронная подпись</nz-form-label>
+      <nz-form-control nzErrorTip="Наличие электронной подписи">
+        <nz-select nzAllowClear formControlName="hasElectronicSignature">
+          <nz-option nzValue="true" nzLabel="Да"></nz-option>
+          <nz-option nzValue="false" nzLabel="Нет"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Почта</nz-form-label>
+      <nz-form-control nzErrorTip="Введите почту студента">
+        <input nz-input formControlName="email">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Номер телефона</nz-form-label>
+      <nz-form-control nzErrorTip="Введите номер телефона студента">
+        <input [imask]="phoneMask" nz-input formControlName="phone">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Логин</nz-form-label>
+      <nz-form-control nzErrorTip="Ввведите логин студента">
+        <input nz-input formControlName="login">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="email">Пароль</nz-form-label>
+      <nz-form-control nzErrorTip="Введите пароль студента">
+        <input nz-input formControlName="password">
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="cancel()">Отменить</button>
+  <button nz-button nzType="primary" (click)="confirm()">Добавить</button>
+</div>

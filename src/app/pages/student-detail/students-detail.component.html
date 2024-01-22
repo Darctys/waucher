@@ -1,0 +1,35 @@
+
+<div>
+  <nz-descriptions nzTitle="Информация о студенте" [ngSwitch]="student?.institute">
+    <nz-descriptions-item nzTitle="Имя">{{student?.fullName}}</nz-descriptions-item>
+
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Vyc">ВУС</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Ienim">ИЕНиМ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Inmit">ИНМТ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Rtf">ИРИТ-РТФ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Isa">ИСА</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Itoo">ИТОО</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Ifk">ИФКСиМП</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Ifo">ИнФО</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Iey">ИНЭУ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Ygi">УГИ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Yei">УралЭНИН</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Fti">ФТИ</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Институт" *ngSwitchCase="instituteEnum.Hti">ХТИ</nz-descriptions-item>
+
+    <nz-descriptions-item *ngIf="student?.isContract" nzTitle="Контракт">Да</nz-descriptions-item>
+    <nz-descriptions-item *ngIf="!student?.isContract" nzTitle="Контракт">Нет</nz-descriptions-item>
+
+    <nz-descriptions-item nzTitle="Номер кадемической группы">{{student?.academicGroup}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Номер студенческого билета">{{student?.posIdCard}}</nz-descriptions-item>
+
+    <nz-descriptions-item *ngIf="student?.hasElectronicSignature" nzTitle="Есть электронная подпись">Да</nz-descriptions-item>
+    <nz-descriptions-item *ngIf="!student?.hasElectronicSignature" nzTitle="Есть электронная подпись">Нет</nz-descriptions-item>
+
+    <nz-descriptions-item nzTitle="Номер студнеческой карты">{{student?.studentIdCard}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Почта">{{student?.email}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Телефон">{{student?.phone}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Логин">{{student?.login}}</nz-descriptions-item>
+  </nz-descriptions>
+</div>
+

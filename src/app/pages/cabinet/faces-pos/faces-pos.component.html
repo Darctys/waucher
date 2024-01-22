@@ -1,0 +1,68 @@
+<ng-container *ngIf="isHavePermission(permissionEnum.facesSave)">
+  <button nz-button [nzType]="'primary'" (click)="createAddFaceModal()"><span>Добавить лицо POS</span></button>
+</ng-container>
+<nz-input-group [nzSuffix]="suffixIconSearch">
+  <input type="text" nz-input placeholder="Поиск" [(ngModel)]="searchValue"/>
+</nz-input-group>
+<div *ngIf="faceList$ | async as faceList">
+  <nz-table #basicTable [nzData]="faceList | search: searchValue">
+    <thead>
+    <tr>
+      <th>Фотография</th>
+      <th>ФИО</th>
+      <th *ngIf="!isRoot()">Институт</th>
+      <th *ngIf="isRoot()" [nzFilters]="instituteFilter" [nzFilterFn]="instituteFilterFn">Институт</th>
+      <th>Контакты</th>
+      <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <ng-container [ngSwitch]="data.institute">
+        <td>
+          <nz-image [nzSrc]="mapPhoto(data.photo)" [nzHeight]="128" [nzWidth]="128">
+
+          </nz-image>
+
+        </td>
+        <td>{{ data.fullName }}</td>
+        <td *ngSwitchCase="instituteEnum.Vyc">ВУС</td>
+        <td *ngSwitchCase="instituteEnum.Ienim">ИЕНиМ</td>
+        <td *ngSwitchCase="instituteEnum.Inmit">ИНМТ</td>
+        <td *ngSwitchCase="instituteEnum.Rtf">ИРИТ-РТФ</td>
+        <td *ngSwitchCase="instituteEnum.Isa">ИСА</td>
+        <td *ngSwitchCase="instituteEnum.Itoo">ИТОО</td>
+        <td *ngSwitchCase="instituteEnum.Ifk">ИФКСиМП</td>
+        <td *ngSwitchCase="instituteEnum.Ifo">ИнФО</td>
+        <td *ngSwitchCase="instituteEnum.Iey">ИНЭУ</td>
+        <td *ngSwitchCase="instituteEnum.Ygi">УГИ</td>
+        <td *ngSwitchCase="instituteEnum.Yei">УралЭНИН</td>
+        <td *ngSwitchCase="instituteEnum.Fti">ФТИ</td>
+        <td *ngSwitchCase="instituteEnum.Hti">ХТИ</td>
+        <td *ngSwitchDefault>{{data.institute}}</td>
+        <td>
+          {{data.phone}}<br>
+          {{data.email}}<br>
+          vk: {{data.vkLink}}<br>
+          tg: {{data.tgLink}}
+        </td>
+        <td>
+          <!--        <button nz-button nzType="default" (click)="navigateToFacePosDetail(data.id)"><span>Подробнее</span></button>-->
+          <br>
+          <ng-container *ngIf="isHavePermission(permissionEnum.facesDelete)">
+            <button nz-button nzType="default" nzDanger (click)="deleteStudent(data.id)"><span>Удалить</span></button>
+          </ng-container>
+          <br>
+          <ng-container *ngIf="isHavePermission(permissionEnum.facesSave)">
+            <button nz-button [nzType]="'primary'" (click)="createEditFaceModal(data.id)"><span>Изменить данные лица POS</span></button>
+          </ng-container>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<ng-template #suffixIconSearch>
+  <i nz-icon nzType="search"></i>
+</ng-template>

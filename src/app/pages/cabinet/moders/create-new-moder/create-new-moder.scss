@@ -1,0 +1,17 @@
+.create_user {
+
+  &__permission {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-inside: 20px;
+  }
+
+  .ant-checkbox-warapper {
+    margin: 100px;
+  }
+
+}

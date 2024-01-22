@@ -1,0 +1,73 @@
+<nz-card>
+  <div nz-row nzJustify="start" class="bigger-font">
+    Поле формы
+  </div>
+
+  <input [(ngModel)]="model.name" nz-input placeholder="Название поля" nzSize="large" />
+  <div nz-row [nzAlign]="'middle'">
+    <nz-select
+      nz-col nzSpan="12"
+      class="with-padding-vertical"
+      [(ngModel)]="model.type"
+      nzAllowClear
+      nzPlaceHolder="Тип поля"
+      [nzOptions]="fieldTypeList"
+      (ngModelChange)="cleatAdditionalData()"
+    ></nz-select>
+    <nz-switch class="with-padding-horizontal" [(ngModel)]="model.required"></nz-switch>
+    Обязательное
+  </div>
+
+  <div [ngSwitch]="model.type">
+
+    <div *ngSwitchCase="fieldType.select">
+
+        <div class="with-padding-vertical" *ngFor="let item of additionalData; let i = index">
+          <div nz-row>
+            <div nz-col nzSpan="10"><input nz-input placeholder="Вариант" [ngModel]="item"/></div>
+            <div nz-col nzSpan="1"><button nz-button nzType="text" (click)="deleteDataItem(i)">
+              <i nz-icon nzType="close" nzTheme="outline"></i>
+            </button></div>
+          </div>
+      </div>
+      <button nz-button nzType="primary" [nzSize]="'small'" (click)="addDataItem()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>
+      </button>
+    </div>
+
+    <div *ngSwitchCase="fieldType.multiSelect">
+
+        <div class="with-padding-vertical" *ngFor="let item of additionalData; let i = index">
+          <div nz-row>
+            <div nz-col nzSpan="10"><input nz-input placeholder="Вариант" [ngModel]="item"/></div>
+            <div nz-col nzSpan="1"><button nz-button nzType="text" (click)="deleteDataItem(i)">
+              <i nz-icon nzType="close" nzTheme="outline"></i>
+            </button></div>
+          </div>
+      </div>
+      <button nz-button nzType="primary" [nzSize]="'small'" (click)="addDataItem()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>
+      </button>
+    </div>
+
+    <div *ngSwitchCase="fieldType.radioButtons">
+
+        <div class="with-padding-vertical" *ngFor="let item of additionalData; let i = index">
+          <div nz-row>
+            <div nz-col nzSpan="10"><input nz-input placeholder="Вариант" [ngModel]="item"/></div>
+            <div nz-col nzSpan="1"><button nz-button nzType="text" (click)="deleteDataItem(i)">
+              <i nz-icon nzType="close" nzTheme="outline"></i>
+            </button></div>
+          </div>
+      </div>
+      <button nz-button nzType="primary" [nzSize]="'small'" (click)="addDataItem()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>
+      </button>
+    </div>
+
+  </div>
+  <div nz-row nzJustify="end">
+    <button (click)="deleteField()" nz-button nzType="default" nzDanger>Удалить</button>
+  </div>
+</nz-card>
+

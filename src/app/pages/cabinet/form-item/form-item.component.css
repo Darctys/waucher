@@ -1,0 +1,11 @@
+.bigger-font {
+    font-size: 120%;
+}
+
+.with-padding-vertical {
+    padding: 8px 0px;
+}
+
+.with-padding-horizontal {
+    padding: 0px 8px;
+}

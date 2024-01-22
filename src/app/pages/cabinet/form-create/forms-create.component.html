@@ -1,0 +1,32 @@
+<div class="with-padding-vertical">
+  <input [(ngModel)]="form.name" nz-input placeholder="Название формы" nzSize="large" />
+</div>
+<div class="with-padding-vertical">
+  <textarea [(ngModel)]="form.description" nz-input placeholder="Описание формы" nzAutosize></textarea>
+</div>
+<div>
+  <nz-date-picker
+    [nzPlaceHolder]="'Время появления'"
+    nzShowTime
+    nzFormat="yyyy-MM-dd HH:mm:ss"
+    [(ngModel)]="start"
+  ></nz-date-picker>
+  <nz-date-picker
+    [nzPlaceHolder]="'Время исчезновения'"
+    nzShowTime
+    nzFormat="yyyy-MM-dd HH:mm:ss"
+    [(ngModel)]="end"
+  ></nz-date-picker>
+</div>
+<div class="with-padding-vertical" *ngFor="let field of form.fields">
+  <form-item [model]="field" (deleteEvent)="deleteField($event)" ></form-item>
+</div>
+<div class="with-padding-vertical" nz-row [nzGutter]="8">
+  <div nz-col class="gutter-row" >
+    <button nz-button [nzType]="'primary'" (click)="addField()"><span>Добавить поле</span></button>
+  </div>
+  <div nz-col class="gutter-row" >
+    <button nz-button [nzType]="'primary'" (click)="saveForm()"><span>Сохранить форму</span></button>
+  </div>
+</div>
+
